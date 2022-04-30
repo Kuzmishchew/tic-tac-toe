@@ -1,12 +1,49 @@
+body{
+    font-family:Arial, Helvetica, sans-serif;
+}
+.main-field{
+    display: flex;
+    justify-content: space-around;
+    /* border: 1px solid red; */
+}
 .gameField {
-    margin: 100px auto;
     border-collapse: collapse;
 }
 
 td {
     width: 200px;
     height: 200px;
-    border: 5px solid black; 
-    text-align: center; 
+    border: 5px;
+    border-image: url(img/border.png) 30 round round;
     background-size: cover;
+}
+
+.result-zone{
+    width: 600px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    /* border: 1px solid black;  */
+}
+.result { 
+    margin: 50px auto;
+    font-size: 32px;
+    text-align: center;
+}
+
+.again{
+    display: none;
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    text-align: center;
+}
+.again:hover{
+    background-color: bisque;
+    cursor: pointer;
 }
