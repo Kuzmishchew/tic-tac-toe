@@ -11,13 +11,13 @@ function createGameField() {
     for (let i = 0; i <= 2; i++) {
       let newRow =  table.insertRow(-1);
       if (i == 0 || i == 1) {
-        newRow.style = "border-bottom: 5px solid black";
+        newRow.style = "border-bottom: 4px solid black";
       }
       for (let j = 0; j <= 2; j++){
         let newCell = newRow.insertCell(-1);
         newCell.id = "cell";
         if (j == 0 || j == 1) {
-            newCell.style = "border-right: 5px solid black";
+            newCell.style = "border-right: 4px solid black";
         }
         gameMass.push(0);
         }
@@ -25,8 +25,10 @@ function createGameField() {
 }
 
 function clicker() {
-    let cross = "background-image: url(/img/cross.png)";
-    let zero = "background-image: url(/img/zero.png)";
+    let random = Math.floor(Math.random() * 10) + 1;
+
+    let cross = `<img src='img/cross/${random}.png' width='90%'>`;
+    let zero = `<img src='img/zero/${random}.png' width='90%'>`;
     if (clickerCheck) {
        return cross;
     } else {
@@ -80,19 +82,28 @@ function winAction(){
     if (checkResult(gameMass) == 1) {
         result.innerHTML = "Победили Крестики!";
         againButton.style.display = "block";
+        for (let i = 0; i < gameMass.length; i++) {
+            gameMass[i] = 4;
+        }
     } else if (checkResult(gameMass) == 2) {
         result.innerHTML = "Победили Нолики!";
         againButton.style.display = "block";
+        for (let i = 0; i < gameMass.length; i++) {
+            gameMass[i] = 4;
+        }
     } else if (checkResult(gameMass) == 3) {
         result.innerHTML = "Ничья!";
         againButton.style.display = "block";
+        for (let i = 0; i < gameMass.length; i++) {
+            gameMass[i] = 4;
+        }
     }
 }
 
 function again(){
     let field = document.querySelectorAll("#cell");
     for (let i = 0; i < field.length; i++) {
-        field[i].style = "background-color: white";
+        field[i].innerHTML = "";
         gameMass[i] = 0;
     }  
     againButton.style.display = "none"; 
@@ -104,7 +115,7 @@ function clickCell(){
     for (let i = 0; i < field.length; i++) {        
         field[i].addEventListener("click", () => {
             if (gameMass[i] == 0) {
-                field[i].style = clicker();
+                field[i].innerHTML = clicker();
                 gameMass[i] = clickerCheck ? 1 : 2;
                 clickerCheck = !clickerCheck;
             }    
